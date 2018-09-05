@@ -209,6 +209,7 @@ export default class ReactAce extends Component {
   }
 
   componentWillUnmount() {
+    this.onBeforeUmount();
     this.editor.destroy();
     this.editor = null;
   }
@@ -217,6 +218,12 @@ export default class ReactAce extends Component {
     if (this.props.onChange && !this.silent) {
       const value = this.editor.getValue();
       this.props.onChange(value, event);
+    }
+  }
+
+  onBeforeUmount() {
+    if (this.props.onBeforeUmount) {
+      this.props.onBeforeUmount()
     }
   }
 
@@ -327,6 +334,7 @@ ReactAce.propTypes = {
   ]),
   showGutter: PropTypes.bool,
   onChange: PropTypes.func,
+  onBeforeUmount: PropTypes.func,
   onCopy: PropTypes.func,
   onPaste: PropTypes.func,
   onFocus: PropTypes.func,
