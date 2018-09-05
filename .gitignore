@@ -41,5 +41,5 @@ node_modules
 lib
 
 # UMD Build
-dist
+#dist
 example/static
